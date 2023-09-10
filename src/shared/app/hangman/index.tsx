@@ -9,11 +9,9 @@ type UserData = {
 };
 
 const HangmanApp = () => {
-  const [userData, setUserData] = useState<UserData | null>(null);
   const [registeredUsers, setRegisteredUsers] = useState<UserData[]>([]);
 
   const handleRegister = (newUserData: UserData) => {
-    setUserData(newUserData);
     setRegisteredUsers([...registeredUsers, newUserData]);
   };
 
