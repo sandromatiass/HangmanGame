@@ -2,13 +2,22 @@ import { CStartGame } from "./start.styles";
 import imgGifStart from "../../../../../assets/gif/startGame.gif";
 import Button from "../../components/buttons";
 import { useState } from 'react';
+import Register from "../register/register";
 import LoadingPage from "../loading/loading";
-import { useNavigate } from 'react-router-dom'; 
+
+type UserData = {
+  name: string;
+  avatar: string;
+};
 
 const StartGame = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showStartGame, setShowStartGame] = useState(true);
-  const navigate = useNavigate(); 
+  const [showRegister, setShowRegister] = useState(false); // Novo estado
+
+  const handleRegister = (newUserData: UserData) => {
+    // Lidar com o registro aqui se necessário
+  };
 
   const handleLoading = () => {
     setShowStartGame(false);
@@ -16,8 +25,7 @@ const StartGame = () => {
 
     setTimeout(() => {
       setIsLoading(false);
-
-      navigate('/register');
+      setShowRegister(true); 
     }, 6000);
   };
 
@@ -29,9 +37,11 @@ const StartGame = () => {
           <Button text="INICIAR JOGO" onClick={handleLoading} />
         </CStartGame>
       )}
-      {isLoading && (
+      {isLoading ? (
         <LoadingPage />
-      )}
+      ) : showRegister ? ( 
+        <Register onRegister={handleRegister} />
+      ) : null}
     </div>
   );
 };
