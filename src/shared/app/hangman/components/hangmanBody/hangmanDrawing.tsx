@@ -1,18 +1,18 @@
 import { HEAD, BODY, RIGHTARM, RIGHTLEG, LEFTLEG, LEFTARM } from "./dataHangman";
 
-const BODY_PARTS = [HEAD, BODY, RIGHTARM, LEFTARM, RIGHTLEG, LEFTLEG];
-
 type HangmanDrawingProps = {
-  numberOfGuesses: number
+  numberOfGuesses: number;
 };
 
 export function HangmanDrawing({ numberOfGuesses }: HangmanDrawingProps) {
   return (
     <div style={{ position: "relative" }}>
-      {BODY_PARTS.slice(0, numberOfGuesses)}
+      {[HEAD, BODY, RIGHTARM, LEFTARM, RIGHTLEG, LEFTLEG].slice(0, numberOfGuesses).map((part, index) => (
+        <div key={index}>{part}</div>
+      ))}
       <div
         style={{
-          height: "50px",
+          height: "3.5rem",
           width: "10px",
           background: "black",
           position: "absolute",
@@ -23,20 +23,20 @@ export function HangmanDrawing({ numberOfGuesses }: HangmanDrawingProps) {
       <div
         style={{
           height: "10px",
-          width: "200px",
+          width: "10rem",
           background: "black",
           marginLeft: "120px",
         }}
       />
       <div
         style={{
-          height: "400px",
+          height: "15rem",
           width: "10px",
           background: "black",
           marginLeft: "120px",
         }}
       />
-      <div style={{ height: "10px", width: "250px", background: "black" }} />
+      <div style={{ height: "10px", width: "15rem", background: "black" }} />
     </div>
   );
-};
+}

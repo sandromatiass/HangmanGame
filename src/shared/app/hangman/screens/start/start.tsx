@@ -2,22 +2,14 @@ import { CStartGame } from "./start.styles";
 import imgGifStart from "../../../../../assets/gif/startGame.gif";
 import Button from "../../components/buttons";
 import { useState } from 'react';
-import Register from "../register/register";
 import LoadingPage from "../loading/loading";
-
-type UserData = {
-  name: string;
-  avatar: string;
-};
+import HangmanGame from "../../components/hangman";
 
 const StartGame = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showStartGame, setShowStartGame] = useState(true);
-  const [showRegister, setShowRegister] = useState(false); // Novo estado
-
-  const handleRegister = (newUserData: UserData) => {
-    // Lidar com o registro aqui se necessário
-  };
+  const [showHangmanGame, setShowHangmanGame] = useState(false); // Novo estado
+  const [showCongratulations, setShowCongratulations] = useState(false); // Novo estado
 
   const handleLoading = () => {
     setShowStartGame(false);
@@ -25,8 +17,15 @@ const StartGame = () => {
 
     setTimeout(() => {
       setIsLoading(false);
-      setShowRegister(true); 
+      setShowHangmanGame(true); // Ative o HangmanGame após a tela de loading
     }, 6000);
+  };
+
+  const handleReturnToStart = () => {
+    // Esta função será chamada quando o botão "Return to Start" for clicado
+    setShowHangmanGame(false);
+    setShowStartGame(true);
+    setShowCongratulations(false); // Certifique-se de redefinir o estado de parabéns ao retornar ao início
   };
 
   return (
@@ -39,8 +38,11 @@ const StartGame = () => {
       )}
       {isLoading ? (
         <LoadingPage />
-      ) : showRegister ? ( 
-        <Register onRegister={handleRegister} />
+      ) : showHangmanGame ? ( // Renderize o HangmanGame apenas quando showHangmanGame for verdadeiro
+        <HangmanGame
+          showCongratulations={showCongratulations}
+          onReturnToStart={handleReturnToStart}
+        />
       ) : null}
     </div>
   );

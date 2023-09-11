@@ -3,16 +3,21 @@ import styled from 'styled-components';
 export const CreditsContainer = styled.div`
   text-align: center;
   padding: 20px;
+  font-family: 'Ubuntu', sans-serif;
 `;
 
 export const Title = styled.h1`
   font-size: 24px;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 `;
 
 export const Description = styled.p`
   font-size: 16px;
-  margin-bottom: 20px;
+  margin: 5rem;
+
+  strong{
+    font-weight: 600;
+  }
 `;
 
 export const TeamMembersContainer = styled.div`
@@ -44,4 +49,5 @@ export const TeamMemberImage = styled.img`
 export const CollegeLogo = styled.img`
   max-width: 200px;
   margin-top: 20px;
+  padding-bottom: 3rem;
 `;

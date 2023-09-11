@@ -10,7 +10,7 @@ export const HEAD = (
       right: "-30px",
     }}
   />
-)
+);
 
 export const BODY = (
   <div
@@ -23,7 +23,7 @@ export const BODY = (
       right: 0,
     }}
   />
-)
+);
 
 export const RIGHTARM = (
   <div
@@ -34,11 +34,11 @@ export const RIGHTARM = (
       position: "absolute",
       top: "150px",
       right: "-100px",
-      rotate: "-30deg",
+      transform: "rotate(-30deg)",
       transformOrigin: "left bottom",
     }}
   />
-)
+);
 
 export const LEFTARM = (
   <div
@@ -49,11 +49,11 @@ export const LEFTARM = (
       position: "absolute",
       top: "150px",
       right: "10px",
-      rotate: "30deg",
+      transform: "rotate(30deg)",
       transformOrigin: "right bottom",
     }}
   />
-)
+);
 
 export const RIGHTLEG = (
   <div
@@ -64,11 +64,11 @@ export const RIGHTLEG = (
       position: "absolute",
       top: "210px",
       right: "-90px",
-      rotate: "60deg",
+      transform: "rotate(60deg)",
       transformOrigin: "left bottom",
     }}
   />
-)
+);
 
 export const LEFTLEG = (
   <div
@@ -79,8 +79,8 @@ export const LEFTLEG = (
       position: "absolute",
       top: "210px",
       right: 0,
-      rotate: "-60deg",
+      transform: "rotate(-60deg)",
       transformOrigin: "right bottom",
     }}
   />
-)
+);

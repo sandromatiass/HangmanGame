@@ -4,11 +4,10 @@ export const CStartGame = styled.div`
   display: flex;
   justify-content: center; 
   align-items: center;
-  height: auto;
 
   img {
-    width: 100%;
-    height: 100%;
+    width: 60rem;
+    height: 30rem;
   }
 
   button {
@@ -19,7 +18,8 @@ export const CStartGame = styled.div`
     border: none;
     cursor: pointer;
     position: absolute;
-    margin-top: 30rem;
+    margin-top: 15rem;
+   
 
     transition: transform 0.2s;
   }

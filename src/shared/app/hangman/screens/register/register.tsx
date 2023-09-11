@@ -1,19 +1,17 @@
 import { useState } from 'react';
 
-const avatars = [
-  'avatar1.png',
-  'avatar2.png',
-  'avatar3.png',
-  'avatar4.png',
-  'avatar5.png',
-];
+type OnRegisterFunction = (data: { name: string; color: string }) => void;
 
+type RegisterProps = {
+  onRegister: OnRegisterFunction;
+  onReturn: () => void;
+};
 
-type OnRegisterFunction = (data: { name: string; avatar: string }) => void;
-
-const Register = ({ onRegister }: { onRegister: OnRegisterFunction }) => {
+const Register = ({ onRegister, onReturn }: RegisterProps) => {
   const [name, setName] = useState('');
-  const [selectedAvatar, setSelectedAvatar] = useState(avatars[0]);
+  const colors = ['#FF5733', '#33FF57', '#5733FF', '#33FFFF', '#FF33F2'];
+  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+  
 
   const handleRegister = () => {
     if (name.trim() === '') {
@@ -21,7 +19,12 @@ const Register = ({ onRegister }: { onRegister: OnRegisterFunction }) => {
       return;
     }
 
-    onRegister({ name, avatar: selectedAvatar });
+    const newUser = { name, color: randomColor };
+    onRegister(newUser);
+
+    const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
+    const updatedUsers = [...existingUsers, newUser];
+    localStorage.setItem('users', JSON.stringify(updatedUsers));
   };
 
   return (
@@ -36,20 +39,9 @@ const Register = ({ onRegister }: { onRegister: OnRegisterFunction }) => {
         />
       </div>
       <div>
-        <label>Escolha um Avatar:</label>
-        <div className="avatar-list">
-          {avatars.map((avatar) => (
-            <img
-              key={avatar}
-              src={avatar}
-              alt={avatar}
-              className={selectedAvatar === avatar ? 'selected' : ''}
-              onClick={() => setSelectedAvatar(avatar)}
-            />
-          ))}
-        </div>
+        <button onClick={handleRegister}>Registrar</button>
+        <button onClick={onReturn}>Voltar para a Tela Inicial</button>
       </div>
-      <button onClick={handleRegister}>Registrar</button>
     </div>
   );
 };
