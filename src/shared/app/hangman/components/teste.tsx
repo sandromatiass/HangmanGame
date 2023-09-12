@@ -36,6 +36,7 @@ function getRandomWord(level: Word[]) {
   return level[Math.floor(Math.random() * level.length)];
 }
 
+
 function HangmanGame({ showCongratulations, onReturnToStart }: HangmanGameProps) {
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   const [score, setScore] = useState(0);
@@ -44,10 +45,6 @@ function HangmanGame({ showCongratulations, onReturnToStart }: HangmanGameProps)
   const [currentHint, setCurrentHint] = useState<string | null>(null);
 
   const [currentLevel, setCurrentLevel] = useState<keyof WordData>("levelOne");
-
-  const [showLevelUpMessage, setShowLevelUpMessage] = useState(false);
-
-  const [showNextWordButton, setShowNextWordButton] = useState(false);
 
   const wordsByLevel: WordData = wordsData[0];
 
@@ -58,75 +55,60 @@ function HangmanGame({ showCongratulations, onReturnToStart }: HangmanGameProps)
 
   const determineLevelFromScore = (score: number) => {
     if (score >= 15) {
-      return "levelThree"; 
+      return "levelThree"; // Nível 3
     } else if (score >= 10) {
-      return "levelTwo"; 
+      return "levelTwo"; // Nível 2
     } else {
-      return "levelOne";
+      return "levelOne"; // Nível 1
     }
   };
-
-  const currentWordIndex = wordsByLevel[currentLevel].indexOf(currentWord!);
-    if (currentWordIndex === wordsByLevel[currentLevel].length - 1) {
-    const newLevel = determineLevelFromScore(score);
-      setCurrentLevel(newLevel);
-  }
-
-  const goToNextWord = () => {
-    const currentWordIndex = wordsByLevel[currentLevel].indexOf(currentWord!);
-    if (currentWordIndex === wordsByLevel[currentLevel].length - 1) {
-      const newLevel = determineLevelFromScore(score);
-      setCurrentLevel(newLevel);
+  
+  const goToNextLevel = () => {
+    if (score >= 10 && currentLevel === "levelOne") {
+      setCurrentLevel("levelTwo");
+    } else if (score >= 15 && currentLevel === "levelTwo") {
+      setCurrentLevel("levelThree");
+    } else {
+      // Não é possível avançar para o próximo nível
     }
-    setCurrentWord(getRandomWord(wordsByLevel[currentLevel]));
-    resetGameState();
+   
+      setCurrentWord(null);
+      setCurrentHint(null);
+      setGuessedLetters([]);
   };
 
-const handleWordGuessed = () => {
-  setScore((prevScore) => prevScore + 5);
-
-  if (!currentWord) {
-    return;
-  }
-
-  const currentWordIndex = wordsByLevel[currentLevel].indexOf(currentWord!);
-
-  if (currentWordIndex === wordsByLevel[currentLevel].length - 1) {
+  const handleWordGuessed = () => {
+    setScore((prevScore) => prevScore + 5);
+  
+    if (!currentWord) {
+      return;
+    }
+  
     const newLevel = determineLevelFromScore(score);
     setCurrentLevel(newLevel);
-  } else {
-    setShowNextWordButton(true);
-  }
-
-  if (score >= 15 && currentLevel === "levelOne") {
-    setShowLevelUpMessage(true);
-    setShowNextWordButton(false);
-
-    setTimeout(() => {
-      setCurrentLevel("levelTwo"); 
-    }, 3000)
-  } else if (score >= 20 && currentLevel === "levelTwo") {
-    setShowLevelUpMessage(true);
-    setShowNextWordButton(false);
-    
-    setTimeout(() => {
-      setCurrentLevel("levelThree"); 
-    }, 3000)
-  } else {
-    setShowLevelUpMessage(false);
-  }
-};
-
-  useEffect(() => {
-    if (score >= 20 && currentLevel === "levelOne") {
-      setShowLevelUpMessage(true);
-    } else if (score >= 25 && currentLevel === "levelTwo") {
-      setShowLevelUpMessage(true);
+  
+    const currentWordIndex = wordsByLevel[currentLevel].indexOf(currentWord);
+  
+    if (currentWordIndex === wordsByLevel[currentLevel].length - 1) {
+      if (score >= 10 && currentLevel === "levelOne") {
+          goToNextLevel();
+      } else if (score >= 15 && currentLevel === "levelTwo") {
+          goToNextLevel();
+      } else {
+        // Não é possível avançar para o próximo nível
+        // Realize alguma ação, se necessário
+      }
     } else {
-      setShowLevelUpMessage(false); 
+      setTimeout(() => {
+        setCurrentWord(wordsByLevel[currentLevel][currentWordIndex + 1]);
+        setCurrentHint(null);
+        setGuessedLetters([]);
+      }, 5000);
     }
-  }, [score, currentLevel]);
+  };
+  
 
+  // Mapeia os níveis e transforma em outros nomes
   const getLevelName = (levelKey: keyof WordData) => {
     switch (levelKey) {
       case "levelOne":
@@ -231,15 +213,10 @@ const addGuessedLetter = useCallback(
     }
   };
 
-  const updateLevelText = () => {
-  const levelName = getLevelName(currentLevel);
-  return `Nível: ${levelName}`;
-};
-
- return (
+  return (
     <CCompletGame>
       <CPlayGame>
-        <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
+      <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
         <OcultText>
           <TextCongratulations>
             {isLoser && (
@@ -248,30 +225,20 @@ const addGuessedLetter = useCallback(
               </p>
             )}
 
-           {isWinner && !showCongratulations && showNextWordButton && (
-             <div>
-                <p style={{ color: "green" }}>
-                 Parabéns, você acertou! Ganhou mais 5 pontos. Siga para a próxima palavra.
-                  {updateLevelText()}
-             </p>
-              <button onClick={goToNextWord}>Próxima Palavra</button>
-             </div>
-           )}
-           
-           {showLevelUpMessage && (
-             <p style={{ color: "blue" }}>
-               Parabéns, você passou para o próximo nível!
-               <p>Aguarde...</p>
-             </p>
-           )}
-            
+            {isWinner && !showCongratulations && (
+              <p style={{ color: "green" }}>
+                Parabéns, você acertou! Ganhou mais 5 pontos. Siga para a próxima palavra.
+              </p>
+            )}
           </TextCongratulations>
           <Ctip>
             <p>
               {currentHint && <span> Dica: {currentHint}</span>}
             </p>
           </Ctip>
+         
         </OcultText>
+        
         <CButtons style={{ fontSize: "1.5rem", textAlign: "center" }}>
           <CInfo>
             <p>
@@ -287,7 +254,7 @@ const addGuessedLetter = useCallback(
           <button onClick={retryWord}>Tentar novamente</button>
         </CButtons>
       </CPlayGame>
-
+    
       <CTextKey>
         <HangmanComplet
           reveal={isLoser}
