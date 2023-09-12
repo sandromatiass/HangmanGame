@@ -4,7 +4,16 @@ import { HangmanComplet } from "./hangmanComplet/hangmanComplet";
 import { Keyboard } from "./keyboard/keyboard";
 import wordsData from "../list.json";
 
-import { CButtons, CCompletGame, CInfo, CPlayGame, CTextKey, Ctip, OcultText, TextCongratulations } from "./hangman.styles";
+import { 
+  CButtons, 
+  CCompletGame, 
+  CInfo, 
+  CPlayGame, 
+  CTextKey, 
+  Ctip, 
+  OcultText, 
+  TextCongratulations 
+} from "./hangman.styles";
 
 interface Word {
   id: number;
@@ -32,13 +41,12 @@ function HangmanGame({ showCongratulations, onReturnToStart }: HangmanGameProps)
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   const [score, setScore] = useState(0);
 
-  const wordsByLevel: WordData = wordsData[0];
-
   const [currentWord, setCurrentWord] = useState<Word | null>(null);
   const [currentHint, setCurrentHint] = useState<string | null>(null);
 
   const [currentLevel, setCurrentLevel] = useState<keyof WordData>("levelOne");
 
+  const wordsByLevel: WordData = wordsData[0];
 
   const resetGameState = () => {
     setCurrentHint(null);
@@ -56,7 +64,6 @@ function HangmanGame({ showCongratulations, onReturnToStart }: HangmanGameProps)
   };
   
   const goToNextLevel = () => {
-    // Verifica se a pontuação atual permite avançar de nível
     if (score >= 10 && currentLevel === "levelOne") {
       setCurrentLevel("levelTwo");
     } else if (score >= 15 && currentLevel === "levelTwo") {
@@ -77,14 +84,12 @@ function HangmanGame({ showCongratulations, onReturnToStart }: HangmanGameProps)
       return;
     }
   
-    // Atualize o nível com base na nova pontuação
     const newLevel = determineLevelFromScore(score);
     setCurrentLevel(newLevel);
   
     const currentWordIndex = wordsByLevel[currentLevel].indexOf(currentWord);
   
     if (currentWordIndex === wordsByLevel[currentLevel].length - 1) {
-      // Verifique se o jogador pode avançar para o próximo nível com base na nova pontuação
       if (score >= 10 && currentLevel === "levelOne") {
         goToNextLevel();
       } else if (score >= 15 && currentLevel === "levelTwo") {
@@ -102,8 +107,6 @@ function HangmanGame({ showCongratulations, onReturnToStart }: HangmanGameProps)
     }
   };
   
-
-  // ...
 
   // Mapeia os níveis e transforma em outros nomes
   const getLevelName = (levelKey: keyof WordData) => {
