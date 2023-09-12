@@ -18,6 +18,7 @@ export function HangmanComplet({
         fontWeight: "bold",
         textTransform: "uppercase",
         fontFamily: "monospace",
+        backgroundColor: "yellow",
       }}
     >
       {wordToGuess.split("").map((letter, index) => (

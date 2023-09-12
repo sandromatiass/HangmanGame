@@ -8,8 +8,8 @@ import HangmanGame from "../../components/hangman";
 const StartGame = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showStartGame, setShowStartGame] = useState(true);
-  const [showHangmanGame, setShowHangmanGame] = useState(false); // Novo estado
-  const [showCongratulations, setShowCongratulations] = useState(false); // Novo estado
+  const [showHangmanGame, setShowHangmanGame] = useState(false); 
+  const [showCongratulations, setShowCongratulations] = useState(false);
 
   const handleLoading = () => {
     setShowStartGame(false);
@@ -17,15 +17,14 @@ const StartGame = () => {
 
     setTimeout(() => {
       setIsLoading(false);
-      setShowHangmanGame(true); // Ative o HangmanGame após a tela de loading
-    }, 6000);
+      setShowHangmanGame(true); 
+    }, 3000);
   };
 
   const handleReturnToStart = () => {
-    // Esta função será chamada quando o botão "Return to Start" for clicado
     setShowHangmanGame(false);
     setShowStartGame(true);
-    setShowCongratulations(false); // Certifique-se de redefinir o estado de parabéns ao retornar ao início
+    setShowCongratulations(false);
   };
 
   return (
@@ -38,7 +37,7 @@ const StartGame = () => {
       )}
       {isLoading ? (
         <LoadingPage />
-      ) : showHangmanGame ? ( // Renderize o HangmanGame apenas quando showHangmanGame for verdadeiro
+      ) : showHangmanGame ? ( 
         <HangmanGame
           showCongratulations={showCongratulations}
           onReturnToStart={handleReturnToStart}

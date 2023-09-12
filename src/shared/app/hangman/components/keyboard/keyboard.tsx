@@ -1,40 +1,18 @@
-import { StyledButton } from "./keyboard.styles"
+import { CKeyboard, StyledButton } from "./keyboard.styles";
 
-const KEYS = [
-  "a",
-  "b",
-  "c",
-  "d",
-  "e",
-  "f",
-  "g",
-  "h",
-  "i",
-  "j",
-  "k",
-  "l",
-  "m",
-  "n",
-  "o",
-  "p",
-  "q",
-  "r",
-  "s",
-  "t",
-  "u",
-  "v",
-  "w",
-  "x",
-  "y",
-  "z",
-]
+const LETTERS = "abcdefghijklmnopqrstuvwxyzáàâãéêíóôõúç";
+
+function normalizeLetter(letter: string): string {
+  const index = LETTERS.indexOf(letter);
+  return index !== -1 ? LETTERS[index] : letter;
+}
 
 type KeyboardProps = {
-  disabled?: boolean
-  activeLetters: string[]
-  inactiveLetters: string[]
-  addGuessedLetter: (letter: string) => void
-}
+  disabled?: boolean;
+  activeLetters: string[];
+  inactiveLetters: string[];
+  addGuessedLetter: (letter: string) => void;
+};
 
 export function Keyboard({
   activeLetters,
@@ -43,27 +21,25 @@ export function Keyboard({
   disabled = false,
 }: KeyboardProps) {
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(75px, 1fr))",
-        gap: ".5rem",
-      }}
+    <CKeyboard
     >
-      {KEYS.map(key => {
-        const isActive = activeLetters.includes(key)
-        const isInactive = inactiveLetters.includes(key)
+      {LETTERS.split("").map((key) => {
+        const normalizedKey = normalizeLetter(key);
+        const isActive = activeLetters.includes(normalizedKey);
+        const isInactive = inactiveLetters.includes(normalizedKey);
         return (
           <StyledButton
-            onClick={() => addGuessedLetter(key)}
-            className={`${isActive ? 'active' : ''} ${isInactive ? 'inactive' : ''}`}
+            onClick={() => addGuessedLetter(normalizedKey)}
+            className={`${isActive ? "active" : ""} ${
+              isInactive ? "inactive" : ""
+            }`}
             disabled={isInactive || isActive || disabled}
             key={key}
           >
             {key}
           </StyledButton>
-        )
+        );
       })}
-    </div>
-  )
+    </CKeyboard>
+  );
 }
