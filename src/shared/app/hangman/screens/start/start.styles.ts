@@ -11,7 +11,8 @@ export const CStartGame = styled.div`
   }
 
   button {
-    background-color: #FF3D00; 
+    background-color: #333333; 
+    border-radius: 1rem;
     color: white; 
     padding: 10px 20px;
     font-size: 18px;

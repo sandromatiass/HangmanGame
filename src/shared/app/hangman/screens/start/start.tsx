@@ -18,7 +18,7 @@ const StartGame = () => {
     setTimeout(() => {
       setIsLoading(false);
       setShowHangmanGame(true); 
-    }, 3000);
+    }, 10000);
   };
 
   const handleReturnToStart = () => {

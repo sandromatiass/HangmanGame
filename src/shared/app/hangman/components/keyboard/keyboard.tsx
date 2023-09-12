@@ -1,4 +1,4 @@
-import { CKeyboard, StyledButton } from "./keyboard.styles";
+import { CKeyboard, OKeyboard, StyledButton } from "./keyboard.styles";
 
 const LETTERS = "abcdefghijklmnopqrstuvwxyzáàâãéêíóôõúç";
 
@@ -21,8 +21,8 @@ export function Keyboard({
   disabled = false,
 }: KeyboardProps) {
   return (
-    <CKeyboard
-    >
+   <OKeyboard>
+      <CKeyboard>
       {LETTERS.split("").map((key) => {
         const normalizedKey = normalizeLetter(key);
         const isActive = activeLetters.includes(normalizedKey);
@@ -41,5 +41,7 @@ export function Keyboard({
         );
       })}
     </CKeyboard>
+   </OKeyboard> 
+    
   );
 }

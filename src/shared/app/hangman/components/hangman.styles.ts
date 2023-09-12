@@ -4,6 +4,7 @@ export const CCompletGame = styled.div`
   display: flex;
   flex-direction: column;
   font-family: 'Ubuntu', sans-serif;
+  padding: 0.5rem;
 `
 
 export const CPlayGame = styled.div`
@@ -41,15 +42,16 @@ export const CButtons = styled.div`
   button {
     border: none;
     border-radius: 1rem;
-    background: #FD64C3;
+    background: #333333;
     display: flex;
     font-weight: 600;
     justify-content: center;
     padding: 0.3rem 0;
     width: 85%;
+    color: white;
 
     &:hover{
-      border: 1px solid aqua;
+      background: #7a7a7a;
       cursor: pointer;
       
     }

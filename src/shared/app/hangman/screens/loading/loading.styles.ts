@@ -1,7 +1,20 @@
 import styled, { keyframes } from 'styled-components';
 
 export const CLoadingPage = styled.div`
- 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+
+  margin-top: 2rem;
+`
+
+export const TextRules = styled.p`
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 3rem;
+  font-family: 'Ubuntu', sans-serif;
 `
 
 const progKeyframes = keyframes`

@@ -1,3 +1,5 @@
+import { CHangmanComplet, TagText } from "./hagmanComplet.styles"
+
 type HangmanWordProps = {
   guessedLetters: string[]
   wordToGuess: string
@@ -10,19 +12,13 @@ export function HangmanComplet({
   reveal = false,
 }: HangmanWordProps) {
   return (
-    <div
+    <CHangmanComplet
       style={{
-        display: "flex",
-        gap: ".25em",
-        fontSize: "6rem",
-        fontWeight: "bold",
-        textTransform: "uppercase",
-        fontFamily: "monospace",
-        backgroundColor: "yellow",
+        
       }}
     >
       {wordToGuess.split("").map((letter, index) => (
-        <span style={{ borderBottom: ".1em solid black" }} key={index}>
+        <TagText  key={index}>
           <span
             style={{
               visibility:
@@ -30,13 +26,13 @@ export function HangmanComplet({
                   ? "visible"
                   : "hidden",
               color:
-                !guessedLetters.includes(letter) && reveal ? "red" : "black",
+                !guessedLetters.includes(letter) && reveal ? "lightGrey" : "black",
             }}
           >
             {letter}
           </span>
-        </span>
+        </TagText>
       ))}
-    </div>
+    </CHangmanComplet>
   )
 }

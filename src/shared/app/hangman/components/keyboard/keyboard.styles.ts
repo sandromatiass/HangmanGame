@@ -1,26 +1,36 @@
 import styled from "styled-components";
 
+export const OKeyboard = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: center;
+`
+
 export const CKeyboard = styled.div`
-  display: "grid";
-  grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
-  gap: ".8rem";
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0.3rem;
+  gap: 0.2rem;
   width: 100%;
 `
 
 export const StyledButton = styled.button`
-  border: 2px solid black;
-  background: none;
-  aspect-ratio: 1 / 1;
-  font-size: 1.2em;
+  font-family: 'Ubuntu', sans-serif;
+  border-radius: 0.5rem;
+  background: #333333;
+  font-size: 1.3em;
   text-transform: uppercase;
   padding: .5rem;
-  font-weight: bold;
+  font-weight: 400;
   cursor: pointer;
-  color: black;
+  color: white;
+  width: 2.6rem;
+  height: auto;
   
 
   &.active {
-    background-color: hsl(200, 100%, 50%);
+    background-color: hsl(0, 0%, 51%);
     color: white;
   }
 
@@ -30,6 +40,6 @@ export const StyledButton = styled.button`
 
   &:hover:not(:disabled),
   &:focus:not(:disabled) {
-    background-color: hsl(200, 100%, 75%);
+    background-color: hsl(0, 0%, 68%);
   }
 `;
