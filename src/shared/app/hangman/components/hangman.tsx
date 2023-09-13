@@ -8,8 +8,10 @@ import {
   CButtons, 
   CCompletGame, 
   CInfo, 
+  CNextWord, 
   CPlayGame, 
   CTextKey, 
+  CWinPlayer, 
   Ctip, 
   OcultText, 
   TextCongratulations 
@@ -48,6 +50,8 @@ function HangmanGame({ showCongratulations, onReturnToStart }: HangmanGameProps)
   const [showLevelUpMessage, setShowLevelUpMessage] = useState(false);
 
   const [showNextWordButton, setShowNextWordButton] = useState(false);
+
+  const [winPleyer, setWinPleyer] = useState(false);
 
   const wordsByLevel: WordData = wordsData[0];
 
@@ -98,20 +102,22 @@ const handleWordGuessed = () => {
     setShowNextWordButton(true);
   }
 
-  if (score >= 15 && currentLevel === "levelOne") {
+  if (score >= 5) {
+    setWinPleyer(true); // Define o jogador como vencedor
+  } else if (score >= 15 && currentLevel === "levelOne") {
     setShowLevelUpMessage(true);
     setShowNextWordButton(false);
 
     setTimeout(() => {
-      setCurrentLevel("levelTwo"); 
-    }, 3000)
+      setCurrentLevel("levelTwo");
+    }, 3000);
   } else if (score >= 20 && currentLevel === "levelTwo") {
     setShowLevelUpMessage(true);
     setShowNextWordButton(false);
-    
+
     setTimeout(() => {
-      setCurrentLevel("levelThree"); 
-    }, 3000)
+      setCurrentLevel("levelThree");
+    }, 3000);
   } else {
     setShowLevelUpMessage(false);
   }
@@ -160,7 +166,7 @@ const handleWordGuessed = () => {
     (letter) => !currentWord?.palavra.includes(letter)
   );
 
-  const isLoser = incorrectLetters.length >= 6;
+  const isLoser = incorrectLetters.length >= 8;
 
   const isWinner =
   currentWord?.palavra.split("").every((letter) => {
@@ -183,6 +189,7 @@ const addGuessedLetter = useCallback(
     setScore(0);
     setGuessedLetters([]);
     changeWordWith(); 
+    setCurrentLevel("levelOne");
   };
 
   useEffect(() => {
@@ -231,14 +238,17 @@ const addGuessedLetter = useCallback(
     }
   };
 
-  const updateLevelText = () => {
-  const levelName = getLevelName(currentLevel);
-  return `Nível: ${levelName}`;
-};
-
  return (
     <CCompletGame>
-      <CPlayGame>
+      {winPleyer ? (
+        <CWinPlayer>
+          <span>Você é o vencedor! Parabéns!</span>
+          <p>Obrigado por participar dessa experiencia incrível, visite nosso LinkedIn e faça um comentário no post da aplicação!</p>
+          <button onClick={restartGame}>Reiniciar Jogo</button>
+        </CWinPlayer>
+      ) : (
+        <>
+        <CPlayGame>
         <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
         <OcultText>
           <TextCongratulations>
@@ -249,13 +259,12 @@ const addGuessedLetter = useCallback(
             )}
 
            {isWinner && !showCongratulations && showNextWordButton && (
-             <div>
+             <CNextWord>
                 <p style={{ color: "green" }}>
-                 Parabéns, você acertou! Ganhou mais 5 pontos. Siga para a próxima palavra.
-                  {updateLevelText()}
-             </p>
-              <button onClick={goToNextWord}>Próxima Palavra</button>
-             </div>
+                    Parabéns, você acertou! Ganhou mais 5 pontos. Siga para a próxima palavra.
+                </p>
+                <button onClick={goToNextWord}>Próxima Palavra</button>
+             </CNextWord>
            )}
            
            {showLevelUpMessage && (
@@ -281,30 +290,31 @@ const addGuessedLetter = useCallback(
               {getLevelName(currentLevel)}
             </p>
           </CInfo>
-          <button onClick={onReturnToStart}>Home</button>
-          <button onClick={restartGame}>Restart Game</button>
+          <button onClick={onReturnToStart}>Início</button>
+          <button onClick={restartGame}>Reiniciar Jogo</button>
           <button onClick={showHint}>Dicas</button>
           <button onClick={retryWord}>Tentar novamente</button>
         </CButtons>
       </CPlayGame>
-
-      <CTextKey>
-        <HangmanComplet
-          reveal={isLoser}
-          guessedLetters={guessedLetters}
-          wordToGuess={currentWord?.palavra || ""}
-        />
-        <div style={{ alignSelf: "stretch" }}>
-          <Keyboard
-            disabled={isWinner || isLoser}
-            activeLetters={guessedLetters.filter((letter) =>
-              currentWord?.palavra.includes(letter) || []
-            )}
-            inactiveLetters={incorrectLetters}
-            addGuessedLetter={addGuessedLetter}
+        <CTextKey>
+          <HangmanComplet
+            reveal={isLoser}
+            guessedLetters={guessedLetters}
+            wordToGuess={currentWord?.palavra || ""}
           />
-        </div>
-      </CTextKey>
+          <div style={{ alignSelf: "stretch" }}>
+            <Keyboard
+              disabled={isWinner || isLoser}
+              activeLetters={guessedLetters.filter((letter) =>
+                currentWord?.palavra.includes(letter) || []
+              )}
+              inactiveLetters={incorrectLetters}
+              addGuessedLetter={addGuessedLetter}
+            />
+          </div>
+        </CTextKey>
+      </>
+      )}
     </CCompletGame>
   );
 }

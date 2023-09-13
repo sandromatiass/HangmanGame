@@ -1,4 +1,4 @@
-import { CLoadingPage, LoaderContainer, TextRules } from "./loading.styles";
+import { CLoadingPage, LoaderContainer, PLoading, TextRules } from "./loading.styles";
 import { useState, useEffect } from 'react';
 import rules from './rules.json';
 
@@ -24,7 +24,7 @@ const LoadingPage = () => {
       </TextRules>
         
       
-      <p>Loading...</p>
+      <PLoading>Loading...</PLoading>
       <LoaderContainer/>  
     </CLoadingPage>
   )

@@ -11,13 +11,16 @@ export const BaseOne = styled.div`
   height: 0.4rem;
   width: 9rem;
   background: black;
+  position: absolute;
+  margin-top: 17rem;
 `;
 
 export const BaseTwo = styled.div`
-  height: 13rem;
+  height: 17rem;
   width: 1rem;
   background: black;
   margin-left: 5rem;
+  position: absolute;
 `;
 
 export const BaseThree = styled.div`
@@ -35,6 +38,3 @@ export const BaseFour = styled.div`
   top: 1rem;
   right: 1rem;
 `;
-
-
-

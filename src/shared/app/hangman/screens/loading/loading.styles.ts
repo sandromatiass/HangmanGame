@@ -3,11 +3,18 @@ import styled, { keyframes } from 'styled-components';
 export const CLoadingPage = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 3rem;
 
   margin-top: 2rem;
+`
+
+export const PLoading = styled.p`
+  font-size: 2em;
+  color: #333333;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bolder;
 `
 
 export const TextRules = styled.p`
@@ -39,7 +46,7 @@ export const LoaderContainer = styled.div`
     top: 0;
     height: 100%;
     width: 0;
-    background: #FF3D00;
+    background: #333333;
     animation: ${progKeyframes} 6s ease-in infinite;
   }
 `;

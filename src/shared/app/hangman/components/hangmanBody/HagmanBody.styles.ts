@@ -62,3 +62,20 @@ export const LeftLeg = styled.div`
   transform: rotate(-60deg);
   transform-origin: right bottom;
 `;
+
+export const EyesX = styled.div`
+  font-size: 0.8em;
+  font-weight: bolder;
+  position: absolute;
+  margin-left: 14rem;
+  margin-top: 2.8rem;
+`;
+
+export const EyesY = styled.div`
+  font-size: 0.8em;
+  font-weight: bolder;
+  position: absolute;
+  margin-left: 15rem;
+  margin-top: 2.8rem;
+`;
+

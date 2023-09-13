@@ -1,4 +1,4 @@
-import { Head, Body, RightArm, LeftArm, RightLeg, LeftLeg } from "./HagmanBody.styles";
+import { Head, Body, RightArm, LeftArm, RightLeg, LeftLeg, EyesX, EyesY } from "./HagmanBody.styles";
 
 import {
   BaseOne,
@@ -12,6 +12,22 @@ type HangmanDrawingProps = {
   numberOfGuesses: number;
 };
 
+const X = () =>{
+  return (
+    <EyesX>
+      <p>X</p>
+    </EyesX>
+  )
+};
+
+const XX = () =>{
+  return (
+    <EyesY>
+      <p>X</p>
+    </EyesY>
+  )
+};
+
 export function HangmanDrawing({ numberOfGuesses }: HangmanDrawingProps) {
   const bodyParts = [
     <Head key="head" />,
@@ -19,7 +35,9 @@ export function HangmanDrawing({ numberOfGuesses }: HangmanDrawingProps) {
     <RightArm key="right-arm" />,
     <LeftArm key="left-arm" />,
     <RightLeg key="right-leg" />,
-    <LeftLeg key="left-leg" />
+    <LeftLeg key="left-leg" />,
+    <X key="EyesX"/>,
+    <XX key="EyesY"/>,
   ];
 
   return (

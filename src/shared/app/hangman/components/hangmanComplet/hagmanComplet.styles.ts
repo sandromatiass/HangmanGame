@@ -10,7 +10,8 @@ export const CHangmanComplet = styled.div`
   font-weight: 600 ;
   text-transform: uppercase;
   font-family: monospace;
-  margin-bottom: 3rem;
+  margin-top: 2.8rem;
+  margin-bottom: 0.5rem;
 `;
 
 export const TagText = styled.span`

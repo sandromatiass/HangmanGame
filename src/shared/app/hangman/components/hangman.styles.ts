@@ -62,7 +62,7 @@ export const CInfo = styled.div`
   display: flex;
   gap: 1rem;
   
-  margin-bottom: 0.5rem;
+  margin-bottom: 6rem;
 
   p {
     font-weight: 600;
@@ -75,5 +75,61 @@ export const CTextKey = styled.div`
   flex-direction: column;
 `
 
+export const CNextWord = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  button {
+    border: none;
+    border-radius: 1rem;
+    background: #333333;
+    display: flex;
+    font-weight: 600;
+    justify-content: center;
+    padding: 0.3rem 0;
+    width: 85%;
+    color: white;
+
+    &:hover{
+      background: #7a7a7a;
+      cursor: pointer;
+      
+    }
+  }
+`
+
+export const CWinPlayer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 5rem;
+  align-items: center;
+
+  p {
+    font-size: 2em;
+    color: green;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+  }
+
+  button {
+    border: none;
+    border-radius: 1rem;
+    background: #333333;
+    display: flex;
+    font-weight: 600;
+    justify-content: center;
+    padding: 0.3rem 0;
+    width: 60%;
+    color: white;
 
 
+    &:hover{
+      background: #7a7a7a;
+      cursor: pointer;
+      
+    }
+  }
+`

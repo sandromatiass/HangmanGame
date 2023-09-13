@@ -42,6 +42,5 @@ export function Keyboard({
       })}
     </CKeyboard>
    </OKeyboard> 
-    
   );
-}
+};
