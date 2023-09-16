@@ -78,7 +78,7 @@ const Credits = () => {
             </li>
             <br />
             <li>
-              Para garantir a segurança e a confiabilidade do código, adotamos o 
+              Para garantir a segurança e a confiabilidade do código, adotamos o  
               <strong>TypeScript</strong>. Com a adição de tipagem estática,
               podemos detectar erros mais cedo no processo de desenvolvimento e
               fornecer uma base sólida para a construção do jogo.
