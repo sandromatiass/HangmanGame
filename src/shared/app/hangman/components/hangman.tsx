@@ -125,7 +125,7 @@ function HangmanGame({ showCongratulations, onReturnToStart }: HangmanGameProps)
       setTimeout(() => {
         setCurrentLevel("levelThree");
       }, 3000);
-    } else if (score >= 0) {
+    } else if (score >= 85) {
       setTimeout(() => {
         setWinPlayer(true);
       }, 1000);
