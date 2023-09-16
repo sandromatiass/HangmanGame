@@ -42,8 +42,13 @@ Este projeto é um jogo educativo interativo desenvolvido como parte do Projeto 
 Você pode jogar o Jogo da Forca de Redes de Computadores [aqui](https://hangman-game-eight-alpha.vercel.app/).
 
 ## Autores
-- [Seu Nome](link_para_o_seu_perfil_no_git)
-- [Nome do Colaborador](link_para_o_perfil_do_colaborador_no_git)
+-Bruno Alexandre Botto Cabral Alencar
+-Douglas Marinho Costa
+-João Paulo Lima de Araújo
+-Natalie Cavalcante
+-Thiago José Oliveira dos Santos
+-Sandro Matias de Albuquerque Junior
+
 
 ## Licença
 Este projeto está sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
