@@ -4,8 +4,15 @@ import { HangmanComplet } from "./hangmanComplet/hangmanComplet";
 import { Keyboard } from "./keyboard/keyboard";
 import wordsData from "../list.json";
 
+import { FaLinkedinIn } from "react-icons/fa";
+
+import { VscDebugRestart } from "react-icons/vsc"
+
 import { 
+  BLinkedin,
+  BRestartChampion,
   CButtons, 
+  CButtonsChapions, 
   CCompletGame, 
   CInfo, 
   CNextWord, 
@@ -118,7 +125,7 @@ function HangmanGame({ showCongratulations, onReturnToStart }: HangmanGameProps)
       setTimeout(() => {
         setCurrentLevel("levelThree");
       }, 3000);
-    } else if (score >= 85) {
+    } else if (score >= 0) {
       setTimeout(() => {
         setWinPlayer(true);
       }, 1000);
@@ -242,13 +249,20 @@ const addGuessedLetter = useCallback(
     }
   };
 
+  const redirecionarParaLinkedIn = () => {
+    window.open('https://www.linkedin.com/posts/sandro-matias_educaaexaeto-tecnologia-aprendizadointerativo-activity-7108829834113380353-04jh?utm_source=share&utm_medium=member_desktop', '_blank');
+  };
+
  return (
     <CCompletGame>
       {winPlayer ? (
         <CWinPlayer>
           <span>Você é o vencedor! Parabéns!</span>
           <p>Obrigado por participar dessa experiencia incrível, visite nosso LinkedIn e faça um comentário no post da aplicação!</p>
-          <button onClick={onReturnToStart}>Reiniciar Jogo</button>
+          <CButtonsChapions>
+            <BRestartChampion onClick={onReturnToStart}><VscDebugRestart/>Reiniciar Jogo</BRestartChampion>
+            <BLinkedin onClick={redirecionarParaLinkedIn}> <FaLinkedinIn/> LinkedIn</BLinkedin>
+          </CButtonsChapions>
         </CWinPlayer>
       ) : (
         <>

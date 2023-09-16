@@ -13,7 +13,7 @@ Este projeto é um jogo educativo interativo desenvolvido como parte do Projeto 
 - Hospedagem na plataforma Vercel para acesso global ao jogo.
 
 ## Como Jogar
-1. Escolha um nível de dificuldade: Iniciante, Intermediário ou Avançado.
+1. Você pode passar de nível: Iniciante, Intermediário ou Avançado.
 2. Tente adivinhar a palavra relacionada a redes de computadores, escolhendo letras.
 3. Use as dicas se precisar de ajuda.
 4. Acumule pontos para avançar de nível.

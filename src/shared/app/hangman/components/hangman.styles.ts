@@ -122,22 +122,52 @@ export const CWinPlayer = styled.div`
     text-align: center;
   }
 
-  button {
-    border: none;
-    border-radius: 1rem;
-    background: #333333;
-    display: flex;
-    font-weight: 600;
-    justify-content: center;
-    padding: 0.3rem 0;
-    width: 60%;
-    color: white;
+`
 
+export const CButtonsChapions = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+`
+
+export const BRestartChampion = styled.button`
+    background: #333333;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: #fff; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
 
     &:hover{
       background: #7a7a7a;
       cursor: pointer;
       
     }
+`
+
+export const BLinkedin = styled.button`
+  background-color: #0077B5; 
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #fff; 
+  border: none; 
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease; 
+
+  &:hover {
+    background-color: #005f95;
   }
 `
