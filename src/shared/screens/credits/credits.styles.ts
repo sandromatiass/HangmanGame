@@ -6,6 +6,14 @@ export const CRulesObje = styled.div`
   align-items: center;
 `
 
+export const CLinkButton = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+`
+
 export const RulesObej = styled.div`
  display: flex;
  flex-direction: column;

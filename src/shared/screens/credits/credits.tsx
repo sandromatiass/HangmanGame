@@ -1,6 +1,7 @@
 import {
   BGit,
   BLinkedin,
+  CLinkButton,
   CRulesObje,
   CollegeLogo,
   CreditsContainer,
@@ -136,14 +137,15 @@ const Credits = () => {
               <li>Se por acaso você não acertar a palavra, pode tentar novamente sem perder os pontos.</li>
               <li>Você também pode optar por reiniciar o jogo ou voltar ao início.</li>
             </ul>
+          <CLinkButton>
+            <span>Se você gostou do jogo, peço que deixe seu comentário no LinkedIn. Isso ajudará bastante nosso projeto.</span>
+            <BLinkedin onClick={redirecionarParaLinkedIn}><FaLinkedinIn/>LinkedIn</BLinkedin>
 
-          <span>Se você gostou do jogo, peço que deixe seu comentário no LinkedIn. Isso ajudará bastante nosso projeto.</span>
-          <BLinkedin onClick={redirecionarParaLinkedIn}><FaLinkedinIn/>LinkedIn</BLinkedin>
+            <span>Visite nosso repositório no GitHub e veja todo o código.</span>
+            <BGit onClick={redirecionarParaGitHub}><BsGithub/>GitHub</BGit>
 
-          <span>Visite nosso repositório no GitHub e veja todo o código.</span>
-          <BGit onClick={redirecionarParaGitHub}><BsGithub/>GitHub</BGit>
-
-          <span>Agradecemos a todos por chegarem até aqui. Muito obrigado!</span>
+            <span>Agradecemos a todos por chegarem até aqui. Muito obrigado!</span>
+          </CLinkButton>
         </RulesObej>
       </CRulesObje>
       
