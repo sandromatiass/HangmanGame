@@ -5,6 +5,7 @@ export const PgTWO = styled.div`
   display: flex;
   justify-content: center; 
   align-items: center; 
+  padding-bottom: 3rem;
 
   img {
     width: 30rem;
