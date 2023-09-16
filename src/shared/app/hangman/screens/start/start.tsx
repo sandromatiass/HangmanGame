@@ -1,11 +1,9 @@
-import { CPGInitial, CStartGame, PgTWO } from "./start.styles";
+import { CPGInitial, CStartGame } from "./start.styles";
 import imgGifStart from "../../../../../assets/gif/startGame.gif";
 import Button from "../../components/buttons";
 import { useState } from 'react';
 import LoadingPage from "../loading/loading";
 import HangmanGame from "../../components/hangman";
-
-import pgImag from "../../../../../assets/gif/propaganda2.gif"
 
 const StartGame = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -37,9 +35,6 @@ const StartGame = () => {
           <img src={imgGifStart} alt="Gif_Initial" />
         <Button text="INICIAR JOGO" onClick={handleLoading} />
         </CStartGame>
-          <PgTWO>
-            <img src={pgImag} alt="Propaganda dois" />
-          </PgTWO>
         </CPGInitial>
        
       )}

@@ -34,10 +34,6 @@ interface HangmanGameProps {
   onReturnToStart: () => void;
 }
 
-function getRandomWord(level: Word[]) {
-  return level[Math.floor(Math.random() * level.length)];
-}
-
 function HangmanGame({ showCongratulations, onReturnToStart }: HangmanGameProps) {
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   const [score, setScore] = useState(0);
@@ -51,9 +47,23 @@ function HangmanGame({ showCongratulations, onReturnToStart }: HangmanGameProps)
 
   const [showNextWordButton, setShowNextWordButton] = useState(false);
 
-  const [winPleyer, setWinPleyer] = useState(false);
+  const [winPlayer, setWinPlayer] = useState(false);
 
   const wordsByLevel: WordData = wordsData[0];
+
+  const [usedWords, setUsedWords] = useState<Word[]>([]);
+
+  function getRandomWord(level: Word[]) {
+    const unusedWords = level.filter(word => !usedWords.includes(word));
+    if (unusedWords.length === 0) {
+      setUsedWords([]);
+      return getRandomWord(level);
+    }
+    const randomIndex = Math.floor(Math.random() * unusedWords.length);
+    const randomWord = unusedWords[randomIndex];
+    setUsedWords([...usedWords, randomWord]);
+    return randomWord;
+  }
 
   const resetGameState = () => {
     setCurrentHint(null);
@@ -61,78 +71,72 @@ function HangmanGame({ showCongratulations, onReturnToStart }: HangmanGameProps)
   };
 
   const determineLevelFromScore = (score: number) => {
-    if (score >= 15) {
-      return "levelThree"; 
-    } else if (score >= 10) {
-      return "levelTwo"; 
+    if (score >= 20) {
+      return "levelThree";
+    } else if (score >= 15) {
+      return "levelTwo";
     } else {
       return "levelOne";
     }
   };
-
-  const currentWordIndex = wordsByLevel[currentLevel].indexOf(currentWord!);
-    if (currentWordIndex === wordsByLevel[currentLevel].length - 1) {
-    const newLevel = determineLevelFromScore(score);
-      setCurrentLevel(newLevel);
-  }
-
+  
   const goToNextWord = () => {
     const currentWordIndex = wordsByLevel[currentLevel].indexOf(currentWord!);
     if (currentWordIndex === wordsByLevel[currentLevel].length - 1) {
-      const newLevel = determineLevelFromScore(score);
-      setCurrentLevel(newLevel);
+      setCurrentLevel(determineLevelFromScore(score));
     }
     setCurrentWord(getRandomWord(wordsByLevel[currentLevel]));
     resetGameState();
   };
-
-const handleWordGuessed = () => {
-  setScore((prevScore) => prevScore + 5);
-
-  if (!currentWord) {
-    return;
-  }
-
-  const currentWordIndex = wordsByLevel[currentLevel].indexOf(currentWord!);
-
-  if (currentWordIndex === wordsByLevel[currentLevel].length - 1) {
-    const newLevel = determineLevelFromScore(score);
-    setCurrentLevel(newLevel);
-  } else {
-    setShowNextWordButton(true);
-  }
-
-  if (score >= 5) {
-    setWinPleyer(true); // Define o jogador como vencedor
-  } else if (score >= 15 && currentLevel === "levelOne") {
-    setShowLevelUpMessage(true);
-    setShowNextWordButton(false);
-
-    setTimeout(() => {
-      setCurrentLevel("levelTwo");
-    }, 3000);
-  } else if (score >= 20 && currentLevel === "levelTwo") {
-    setShowLevelUpMessage(true);
-    setShowNextWordButton(false);
-
-    setTimeout(() => {
-      setCurrentLevel("levelThree");
-    }, 3000);
-  } else {
-    setShowLevelUpMessage(false);
-  }
-};
-
-  useEffect(() => {
-    if (score >= 20 && currentLevel === "levelOne") {
+  
+  const handleWordGuessed = () => {
+    setScore((prevScore) => prevScore + 5);
+  
+    if (!currentWord) {
+      return;
+    }
+  
+    const currentWordIndex = wordsByLevel[currentLevel].indexOf(currentWord!);
+  
+    if (currentWordIndex === wordsByLevel[currentLevel].length - 1) {
+      setCurrentLevel(determineLevelFromScore(score));
+    } else {
+      setShowNextWordButton(true);
+    }
+  
+    if (score >= 25 && currentLevel === "levelOne") {
       setShowLevelUpMessage(true);
-    } else if (score >= 25 && currentLevel === "levelTwo") {
+      setShowNextWordButton(false);
+  
+      setTimeout(() => {
+        setCurrentLevel("levelTwo");
+      }, 3000);
+    } else if (score >= 55 && currentLevel === "levelTwo") {
+      setShowLevelUpMessage(true);
+      setShowNextWordButton(false);
+  
+      setTimeout(() => {
+        setCurrentLevel("levelThree");
+      }, 3000);
+    } else if (score >= 85) {
+      setTimeout(() => {
+        setWinPlayer(true);
+      }, 1000);
+    }else {
+      setShowLevelUpMessage(false);
+    };
+  };
+   
+  useEffect(() => {
+    if (score >= 30 && currentLevel === "levelOne") {
+      setShowLevelUpMessage(true);
+    } else if (score >= 60 && currentLevel === "levelTwo") {
       setShowLevelUpMessage(true);
     } else {
-      setShowLevelUpMessage(false); 
+      setShowLevelUpMessage(false);
     }
   }, [score, currentLevel]);
-
+  
   const getLevelName = (levelKey: keyof WordData) => {
     switch (levelKey) {
       case "levelOne":
@@ -230,21 +234,21 @@ const addGuessedLetter = useCallback(
     }
   }, [isWinner, currentWord]);
 
-
   const retryWord = () => {
     if (currentWord) {
       setCurrentHint(null);
       setGuessedLetters([]);
+      changeWordWith(); 
     }
   };
 
  return (
     <CCompletGame>
-      {winPleyer ? (
+      {winPlayer ? (
         <CWinPlayer>
           <span>Você é o vencedor! Parabéns!</span>
           <p>Obrigado por participar dessa experiencia incrível, visite nosso LinkedIn e faça um comentário no post da aplicação!</p>
-          <button onClick={restartGame}>Reiniciar Jogo</button>
+          <button onClick={onReturnToStart}>Reiniciar Jogo</button>
         </CWinPlayer>
       ) : (
         <>
@@ -268,10 +272,12 @@ const addGuessedLetter = useCallback(
            )}
            
            {showLevelUpMessage && (
-             <p style={{ color: "blue" }}>
-               Parabéns, você passou para o próximo nível!
-               <p>Aguarde...</p>
-             </p>
+            <>
+            <p style={{ color: "blue" }}>
+              Parabéns, você passou para o próximo nível!
+            </p>
+            <p style={{ color: "blue" }}>Aguarde...</p>
+            </>  
            )}
             
           </TextCongratulations>

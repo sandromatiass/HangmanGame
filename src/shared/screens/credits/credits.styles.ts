@@ -9,9 +9,10 @@ export const CRulesObje = styled.div`
 export const RulesObej = styled.div`
  display: flex;
  flex-direction: column;
+ align-items: center;
+ justify-content: center;
  font-family: 'Ubuntu', sans-serif;
  width: 100%;
- background-color: lightgrey;
 
  h2{
   font-size: 2em;
@@ -26,7 +27,7 @@ export const RulesObej = styled.div`
 
  li {
   font-size: 1.1em;
-  line-height: 1.2rem;
+  line-height: 0.8rem;
  }
 
  span {
@@ -89,3 +90,42 @@ export const CollegeLogo = styled.img`
 `;
 
 
+export const BLinkedin = styled.button`
+  background-color: #0077B5; 
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #fff; 
+  border: none; 
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease; 
+
+  &:hover {
+    background-color: #005f95;
+  }
+`
+
+export const BGit = styled.button`
+  display: flex;
+  padding: 10px 30px; 
+  font-size: 1.5em;
+  align-items: center;
+  justify-content: center;
+  display: inline-block;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #ffffff; 
+  background-color: #f34f29; 
+  transition: background-color 0.3s ease;
+  gap: 1rem;
+
+  &:hover {
+    background-color: #e44d26;
+  }
+`

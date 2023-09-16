@@ -31,14 +31,7 @@ export const CStartGame = styled.div`
 `;
 
 
-export const PgTWO = styled.div`
-  
-  img{
-    margin-top:0.3rem;
-    width: 30rem;
-  }
 
-`
 
 export const CPGInitial = styled.div`
   display: flex;

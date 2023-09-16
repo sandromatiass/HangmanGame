@@ -10,6 +10,8 @@ import Footer from "./shared/screens/components/containers/footer/footer";
 import Reset from "./styles/Generic/Reset";
 
 import imgModal from "./assets/gif/propaganda1.gif"
+
+
 import { CenteredModal, CloseButton, ModalContent, ModalImage } from "./App.styles";
 
 function App() {

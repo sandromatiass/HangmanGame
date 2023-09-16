@@ -1,4 +1,6 @@
 import {
+  BGit,
+  BLinkedin,
   CRulesObje,
   CollegeLogo,
   CreditsContainer,
@@ -9,6 +11,9 @@ import {
   TeamMembersContainer,
   Title,
 } from "./credits.styles";
+
+import { FaLinkedinIn } from "react-icons/fa";
+import { BsGithub } from "react-icons/bs"
 
 import Sandro from "../../../assets/png/sandro.png";
 import Douglas from "../../../assets/png/douglas.png";
@@ -114,8 +119,8 @@ const Credits = () => {
               <li>Existem <span>3</span> níveis até chegar à vitória:</li>
               <ul>
                 <li>Você começa no <span>nível 1</span>.</li>
-                <li>Para atingir o <span>nível 2</span>, você precisa de <span>25 pontos</span>.</li>
-                <li>Para atingir o <span>nível 3</span>, você precisa de <span>55 pontos</span>.</li>
+                <li>Para atingir o <span>nível 2</span>, você precisa de <span>30 pontos</span>.</li>
+                <li>Para atingir o <span>nível 3</span>, você precisa de <span>60 pontos</span>.</li>
                 <li>Para vencer o jogo, você precisará de <span>90 pontos</span>.</li>
               </ul>
               <li>Cada palavra vale <span>5 pontos</span>.</li>
@@ -124,10 +129,10 @@ const Credits = () => {
             </ul>
 
           <span>Se você gostou do jogo, peço que deixe seu comentário no LinkedIn. Isso ajudará bastante nosso projeto.</span>
-          <button>LinkedIn</button>
+          <BLinkedin><FaLinkedinIn/>LinkedIn</BLinkedin>
 
           <span>Visite nosso repositório no GitHub e veja todo o código.</span>
-          <button>GitHub</button>
+          <BGit><BsGithub/>GitHub</BGit>
 
           <span>Agradecemos a todos por chegarem até aqui. Muito obrigado!</span>
         </RulesObej>

@@ -78,6 +78,7 @@ export const CTextKey = styled.div`
 export const CNextWord = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
 
   button {
@@ -107,11 +108,18 @@ export const CWinPlayer = styled.div`
   gap: 5rem;
   align-items: center;
 
+  span {
+    color: blue;
+    font-size: 2em;
+    margin-top: 1rem;
+  }
+
   p {
     font-size: 2em;
     color: green;
     font-family: 'Ubuntu', sans-serif;
     font-weight: bold;
+    text-align: center;
   }
 
   button {
