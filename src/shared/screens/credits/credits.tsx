@@ -20,10 +20,19 @@ import Douglas from "../../../assets/png/douglas.png";
 import Natalie from "../../../assets/png/natalie.png";
 import Joao from "../../../assets/png/joao.png";
 import Bruno from "../../../assets/png/bruno.png";
-import UserImage from "../../../assets/png/user.png"
+import Thiago from "../../../assets/png/Thiago.png"
 import Cesmac from "../../../assets/png/LogoCesmac.png";
 
 const Credits = () => {
+
+  const redirecionarParaGitHub = () => {
+    window.open('https://github.com/sandromatiass/HangmanGame', '_blank');
+  };
+  
+  const redirecionarParaLinkedIn = () => {
+    window.open('https://www.linkedin.com/posts/sandro-matias_educaaexaeto-tecnologia-aprendizadointerativo-activity-7108829834113380353-04jh?utm_source=share&utm_medium=member_desktop', '_blank');
+  };
+
   return (
     <CreditsContainer>
       <CRulesObje>
@@ -129,10 +138,10 @@ const Credits = () => {
             </ul>
 
           <span>Se você gostou do jogo, peço que deixe seu comentário no LinkedIn. Isso ajudará bastante nosso projeto.</span>
-          <BLinkedin><FaLinkedinIn/>LinkedIn</BLinkedin>
+          <BLinkedin onClick={redirecionarParaLinkedIn}><FaLinkedinIn/>LinkedIn</BLinkedin>
 
           <span>Visite nosso repositório no GitHub e veja todo o código.</span>
-          <BGit><BsGithub/>GitHub</BGit>
+          <BGit onClick={redirecionarParaGitHub}><BsGithub/>GitHub</BGit>
 
           <span>Agradecemos a todos por chegarem até aqui. Muito obrigado!</span>
         </RulesObej>
@@ -160,7 +169,7 @@ const Credits = () => {
           <p>Bruno A. Botto</p>
         </TeamMember>
         <TeamMember>
-          <TeamMemberImage src={UserImage} alt="Membro da equipe 2" />
+          <TeamMemberImage src={Thiago} alt="Membro da equipe 2" />
           <p>Thiago J. Oliveira</p>
         </TeamMember>
       </TeamMembersContainer>
