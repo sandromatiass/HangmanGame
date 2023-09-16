@@ -42,12 +42,12 @@ Este projeto é um jogo educativo interativo desenvolvido como parte do Projeto 
 Você pode jogar o Jogo da Forca de Redes de Computadores [aqui](https://hangman-game-eight-alpha.vercel.app/).
 
 ## Autores
--Bruno Alexandre Botto Cabral Alencar
--Douglas Marinho Costa
--João Paulo Lima de Araújo
--Natalie Cavalcante
--Thiago José Oliveira dos Santos
--Sandro Matias de Albuquerque Junior
+- Bruno Alexandre Botto Cabral Alencar
+- Douglas Marinho Costa
+- João Paulo Lima de Araújo
+- Natalie Cavalcante
+- Thiago José Oliveira dos Santos
+- Sandro Matias de Albuquerque Junior
 
 
 ## Licença
